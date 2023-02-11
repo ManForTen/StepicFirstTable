@@ -13,8 +13,10 @@ public class Main {
         DB.updateType(190,"Обычная домашняя");
         DB.updateType("Американская короткошерстная","Обычная домашняя");
         System.out.println(DB.getType(10));
-        DB.getType( "type LIKE '%а'");
-        DB.getType();
+        DB.insertCat("Васька","Бенгальская кошка",5,15.1);
+        DB.insertCat("Моська","Чаузи",1,3.0);
+        DB.insertCat("Буська","Сибирская уличная",3,10.88);
+        DB.addMoreCats(10);
     }
 
 }
