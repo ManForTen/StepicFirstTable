@@ -24,15 +24,15 @@ public class DB {
         }
     }
 
-    public static void deleteType (int id) throws SQLException {//удаление типа кошки по ID
+    public static void deleteType (int id) throws SQLException {
         stmt.executeUpdate("DELETE FROM types WHERE id=" + id);
     }
 
-    public static void deleteType (String type) throws SQLException {//удаление типа кошки по названию
+    public static void deleteType (String type) throws SQLException {
         stmt.executeUpdate("DELETE FROM types WHERE type='" + type + "'");
     }
 
-    public static void updateType (int id, String newType ) {//обновление типа кошки по ID
+    public static void updateType (int id, String newType ) {
         try {
             stmt.executeUpdate("UPDATE types SET type='"+newType+"' WHERE id=" + id);
         }
@@ -41,7 +41,7 @@ public class DB {
         }
     }
 
-    public static void updateType (String type, String newType ) {//обновление типа кошки по названию
+    public static void updateType (String type, String newType ) {
         try{
             stmt.executeUpdate("UPDATE types SET type='"+newType+"' WHERE type='" + type + "'");
         }
@@ -50,20 +50,25 @@ public class DB {
         }
     }
 
-    public static String getType (int id) throws SQLException {//получаем тип по id
+    public static String getType (int id) throws SQLException {
         ResultSet rs = stmt.executeQuery("SELECT type FROM types WHERE id=" + id);
         return rs.isBeforeFirst()?rs.getString("type"):"Типа с ключом "+id+" не существует";
     }
 
-    public static void getType (String where) throws SQLException {//получаем и печатаем типы по условию
+    public static void getType (String where) throws SQLException {
         ResultSet rs = stmt.executeQuery("SELECT type FROM types WHERE " + where);
         while(rs.next())
             System.out.println(rs.getString("type"));
     }
 
-    public static void getType () throws SQLException {//получаем и печатаем все типы
+    public static void getType () throws SQLException {
         ResultSet rs = stmt.executeQuery("SELECT type FROM types");
         while(rs.next())
             System.out.println(rs.getString("type"));
+    }
+
+    public static void createTableCats() throws SQLException{
+        stmt.executeUpdate("CREATE TABLE if not exists 'cats' ('id' INTEGER PRIMARY KEY AUTOINCREMENT, 'name' VARCHAR(20) NOT NULL, 'id_type' INTEGER REFERENCES 'types' ('id') ON DELETE RESTRICT NOT NULL, 'age' INTEGER NOT NULL, 'weight' DOUBLE, FOREIGN KEY ('id_type')  REFERENCES 'types' ('id'))");
+        System.out.println("Таблица создана!");
     }
 }
