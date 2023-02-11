@@ -49,4 +49,21 @@ public class DB {
             System.out.println("Запись '"+newType+"' уже существует");
         }
     }
+
+    public static String getType (int id) throws SQLException {//получаем тип по id
+        ResultSet rs = stmt.executeQuery("SELECT type FROM types WHERE id=" + id);
+        return rs.isBeforeFirst()?rs.getString("type"):"Типа с ключом "+id+" не существует";
+    }
+
+    public static void getType (String where) throws SQLException {//получаем и печатаем типы по условию
+        ResultSet rs = stmt.executeQuery("SELECT type FROM types WHERE " + where);
+        while(rs.next())
+            System.out.println(rs.getString("type"));
+    }
+
+    public static void getType () throws SQLException {//получаем и печатаем все типы
+        ResultSet rs = stmt.executeQuery("SELECT type FROM types");
+        while(rs.next())
+            System.out.println(rs.getString("type"));
+    }
 }

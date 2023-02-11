@@ -11,5 +11,8 @@ public class Main {
         DB.deleteType("Австралийский мист");
         DB.updateType(190,"Обычная домашняя");
         DB.updateType("Американская короткошерстная","Обычная домашняя");
+        System.out.println(DB.getType(10));
+        DB.getType( "type LIKE '%а'");
+        DB.getType();
     }
 }
