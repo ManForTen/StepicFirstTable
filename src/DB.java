@@ -132,4 +132,22 @@ public class DB {
             System.out.println("Запись уже существует!");
         }
     }
+
+    public static String getCat (int id) throws SQLException {
+        ResultSet rs = stmt.executeQuery("SELECT cats.name, types.type as type, cats.age, cats.weight FROM cats JOIN types ON cats.id_type=types.id WHERE cats.id=" + id);
+        return rs.isBeforeFirst()?rs.getString("name")+", "+rs.getString("type")+", "+rs.getInt("age")+", "+rs.getDouble("weight"):"Котика с ключом "+id+" не существует";
+    }
+
+    public static ResultSet getCat (String where) throws SQLException {
+        ResultSet rs = stmt.executeQuery("SELECT cats.name, types.type as type, cats.age, cats.weight FROM cats JOIN types ON cats.id_type=types.id WHERE " + where);
+        while(rs.next())
+            System.out.println(rs.getString("name")+", "+rs.getString("type")+", "+rs.getInt("age")+", "+rs.getDouble("weight"));
+        return rs;
+    }
+
+    public static void getCat () throws SQLException {
+        ResultSet rs = stmt.executeQuery("SELECT cats.name, types.type as type, cats.age, cats.weight FROM cats JOIN types ON cats.id_type=types.id");
+        while(rs.next())
+            System.out.println(rs.getString("name")+", "+rs.getString("type")+", "+rs.getInt("age")+", "+rs.getDouble("weight"));
+    }
 }

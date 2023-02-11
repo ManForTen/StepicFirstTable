@@ -21,6 +21,9 @@ public class Main {
         DB.deleteByWhere("cats","name='Золушка'");
         DB.updateByWhereWithSet("cats","name='Лиловая'","name='Лило'");
         DB.updateByIdWithSet("cats","name='Пиратище'",10040);
+        System.out.println(DB.getCat(5));
+        DB.getCat( "name LIKE '%а'");
+        DB.getCat();
     }
 
 }
