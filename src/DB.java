@@ -107,4 +107,29 @@ public class DB {
             insertCat(name,type,age,weight);
         }
     }
+    public static void deleteById (String table, int id) throws SQLException {//удаление из таблицы по ID
+        stmt.executeUpdate("DELETE FROM "+table+" WHERE id=" + id);
+    }
+
+    public static void deleteByWhere (String table, String where) throws SQLException {//удаление из таблицы по where
+        stmt.executeUpdate("DELETE FROM "+table+" WHERE "+where);
+    }
+
+    public static void updateByWhereWithSet (String table, String set, String where) {
+        try{
+            stmt.executeUpdate("UPDATE "+table+" SET "+set+" WHERE "+where);
+        }
+        catch (SQLException s) {
+            System.out.println("Запись уже существует");
+        }
+    }
+
+    public static void updateByIdWithSet (String table, String set, int id) {
+        try{
+            stmt.executeUpdate("UPDATE "+table+" SET "+set+" WHERE id="+id);
+        }
+        catch (SQLException s) {
+            System.out.println("Запись уже существует!");
+        }
+    }
 }

@@ -17,6 +17,10 @@ public class Main {
         DB.insertCat("Моська","Чаузи",1,3.0);
         DB.insertCat("Буська","Сибирская уличная",3,10.88);
         DB.addMoreCats(10);
+        DB.deleteById("cats", 10036);
+        DB.deleteByWhere("cats","name='Золушка'");
+        DB.updateByWhereWithSet("cats","name='Лиловая'","name='Лило'");
+        DB.updateByIdWithSet("cats","name='Пиратище'",10040);
     }
 
 }
