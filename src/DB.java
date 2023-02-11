@@ -23,4 +23,30 @@ public class DB {
             System.out.println("Запись '"+type+"' уже существует");
         }
     }
+
+    public static void deleteType (int id) throws SQLException {//удаление типа кошки по ID
+        stmt.executeUpdate("DELETE FROM types WHERE id=" + id);
+    }
+
+    public static void deleteType (String type) throws SQLException {//удаление типа кошки по названию
+        stmt.executeUpdate("DELETE FROM types WHERE type='" + type + "'");
+    }
+
+    public static void updateType (int id, String newType ) {//обновление типа кошки по ID
+        try {
+            stmt.executeUpdate("UPDATE types SET type='"+newType+"' WHERE id=" + id);
+        }
+        catch (SQLException s) {
+            System.out.println("Запись с ключом '"+id+"' уже существует");
+        }
+    }
+
+    public static void updateType (String type, String newType ) {//обновление типа кошки по названию
+        try{
+            stmt.executeUpdate("UPDATE types SET type='"+newType+"' WHERE type='" + type + "'");
+        }
+        catch (SQLException s) {
+            System.out.println("Запись '"+newType+"' уже существует");
+        }
+    }
 }

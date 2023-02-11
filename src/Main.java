@@ -7,5 +7,9 @@ public class Main {
         DB.insertType("Абиссинская кошка");
         DB.insertType("Австралийский мист");
         DB.insertType("Американская жесткошерстная");
+        DB.deleteType(1);
+        DB.deleteType("Австралийский мист");
+        DB.updateType(190,"Обычная домашняя");
+        DB.updateType("Американская короткошерстная","Обычная домашняя");
     }
 }
